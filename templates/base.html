@@ -1,0 +1,43 @@
+{% from 'bootstrap5/utils.html' import render_messages %}
+{% from 'bootstrap5/utils.html' import render_icon %}
+<!doctype html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'libs/bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
+    <!--{{ bootstrap.load_css() }}-->
+
+    <style>
+        pre {
+            background: #ddd;
+            padding: 10px;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        footer {
+            margin: 20px;
+        }
+    </style>
+
+    <title>{% block title %} {% endblock %}</title>
+  </head>
+  <body>
+    <div class="container">
+        {{ render_messages(container=False, dismissible=True, dismiss_animate=True) }}
+        <h1 class="text-center">Wikirace - Kürzester Weg zwischen zwei Artikeln</h1>
+        {% block content %} {% endblock %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--script src="{{ url_for('static', filename= 'libs/jquery-3.7.1.slim.min.js') }}"></script-->
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script-->
+    <script src="{{ url_for('static', filename= 'libs/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js') }}"></script>
+    <!--{{ bootstrap.load_js() }}-->
+  </body>
+</html>

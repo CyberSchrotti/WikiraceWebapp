@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="GET" class="col-md-6 mx-auto">
+    <div class="row mb-3">
+        <div class="col-auto">
+            <label for="source">Start Artikel:</label>
+            <input type="text" class="form-control mt-1" id="source" name="source" placeholder="z.B. Angela Merkel" value="{{sourceValue}}" aria-label="First name">
+        </div>
+        <div class="col-auto">
+            <label for="target">Ziel Artikel:</label>
+            <input type="text" class="form-control mt-1" id="target" name="target" placeholder="z.B. Mondlandung" value="{{targetValue}}" aria-label="Last name">
+        </div>
+        <div class="col-auto align-self-end">
+            <button  type="submit" class="btn btn-primary">Suchen</button>
+        </div>
+    </div>
+</form>
+{% if searchPerformed %}
+
+<div class="col-md-6 mx-auto">
+    <div class="card text-center text-bg-light">
+        <div class="card-header">
+            <h5 class="card-title">Von <i>{{sourceValue}}</i> zu <i>{{targetValue}}</i></h5>
+            {% if numberOfLinks == 0 %}
+            <h6 class="card-subtitle mb-2 text-warning">Kein Weg gefunden !!!</h6>
+            {% else %}
+            <h6 class="card-subtitle mb-2 text-muted">benötigt {{numberOfLinks}} links</h6>
+            {% endif %}
+            <p class="card-text small text-muted">in {{duration}} Sekunden</p>
+        </div>
+        <div class="card-body">
+            {% for article in path %}
+            <p class="cardtext mb-0">
+                <a href="{{article[1]}}" target="_blank" rel="noopener noreferrer" class="card-link">{{article[0]}}</a>                
+            </p>
+            {% if not loop.last %}
+            <p class="cardtext mb-0">
+                {{ render_icon('arrow-down') }}
+            </p>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
